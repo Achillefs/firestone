@@ -1,6 +1,8 @@
+require 'fondue/hash_class'
+
 # A ruby interface to Firefox Prefs.js
 module Firefox
-  class Prefs
+  class Prefs < Fondue::HashClass
     # default prefs.js banner
     BANNER = %{# Mozilla User Preferences
 
@@ -14,7 +16,7 @@ module Firefox
 
 }
     
-    attr_accessor :prefs, :raw_prefs, :path
+    attr_accessor :raw_prefs, :path
     
     def initialize path_to_prefs
       @path = path_to_prefs
@@ -23,7 +25,8 @@ module Firefox
       parse_prefs!
     end
     
-    def write! path
+    def write! write_path = ''
+      path = write_path == '' ? @path : write_path
       File.open(path,'w') { |f| f.write(stringified_prefs) }
     end
     
@@ -34,14 +37,6 @@ module Firefox
         %{user_pref("#{key}", #{val.is_a?(String) ? %{"#{val}"} : val});}
       }.join("\n")
       string << "\n"
-    end
-    
-    def method_missing name, *args, &block
-      if @prefs.respond_to?(name)
-        @prefs.send(name,*args)
-      else
-        super
-      end
     end
   protected
     def parse_prefs!

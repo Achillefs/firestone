@@ -50,7 +50,7 @@ module Firefox
         raise mount_response if mount_response =~ /mount failed/
         volume = mount_response.split.last
         puts "Mounted on #{volume}"
-        FileUtils.cp_r(File.join(volume,'Firefox.app'), '/Applications/Firefox.test.app')
+        FileUtils.cp_r(File.join(volume,'Firefox.app'), '/Applications/Firefox.app')
         puts 'Copied App in /Applications'
         unmount_response = `hdiutil unmount #{volume} 2>&1`
         raise unmount_response if unmount_response =~ /unmount failed/

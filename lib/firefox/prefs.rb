@@ -1,5 +1,3 @@
-require 'fondue/hash_class'
-
 # A ruby interface to Firefox Prefs.js
 module Firefox
   class Prefs < Fondue::HashClass

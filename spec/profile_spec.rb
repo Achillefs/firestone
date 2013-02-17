@@ -4,7 +4,10 @@ describe Firefox::Profile do
   before { @path = './spec/files/' }
   
   context '#register_profile' do
-    before { @path = './spec/files/testprofile' }
+    before {
+      @path = './spec/files/testprofile'
+      Firefox::Profile.stub(:call_ff_create).and_return("Success: created profile 'test /Users/achilles/Scripts/serpclicker/profiles/' at '/Users/achilles/Scripts/serpclicker/profiles/prefs.js'")
+    }
     after { FileUtils.rm_rf @path }
     subject { Firefox::Profile.create(@path) }
     it { subject.should be_a(Firefox::Profile) }

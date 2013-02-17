@@ -21,14 +21,17 @@ module Firefox
           FileUtils.mkdir_p(path)
           FileUtils.touch(%W[prefs user].map { |f| File.join(path,"#{f}.js") })
         end
-        realpath = 
-        name = File.split(path).last
-        response = %x[#{Base.bin_path} -CreateProfile \"#{name} #{File.realpath(path)}\" 2>&1]
+        response = call_ff_create(path)
         if response =~ /Error/
           raise ProfileInitializationError, response
         else
           self.new(path)
         end
+      end
+      
+      def call_ff_create path
+        name = File.split(path).last
+        %x[#{Base.bin_path} -CreateProfile \"#{name} #{File.realpath(path)}\" 2>&1]
       end
     end
   end

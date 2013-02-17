@@ -14,7 +14,7 @@ module Firefox
         case platform(RUBY_PLATFORM)
         when :osx
           @bin_path = '/Applications/Firefox.app/Contents/MacOS/firefox-bin'
-        when :windows
+        when :win
           @bin_path = '"C:\Program Files\Mozilla Firefox\firefox.exe"'
         when :linux
           @bin_path = '/usr/bin/firefox'

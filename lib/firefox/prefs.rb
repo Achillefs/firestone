@@ -14,7 +14,7 @@ module Firefox
 
 }
     
-    attr_accessor :raw_prefs, :path
+    attr_accessor :raw_prefs, :path, :prefs
     
     def initialize path_to_prefs
       @path = path_to_prefs

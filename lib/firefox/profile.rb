@@ -4,6 +4,8 @@ module Firefox
   class ProfileInitializationError < Exception # :nodoc:
   end
   
+  # A Firefox profile. Allows basic creation and management of a profile. 
+  # Supports preference setting and addon installation
   class Profile
     attr_accessor :prefs, :addons
     
@@ -12,15 +14,17 @@ module Firefox
       @addons = Addons.new(File.join(path,'extensions'))
     end
     
+    def save!
+      self.prefs.write!
+    end
+    
     class << self
       # Register a new profile with firefox.
       # This is the right way to initialize a new profile.
       # It checks if the given directory exists, creates it if not
       def create path
-        unless File.directory?(path)
-          FileUtils.mkdir_p(path)
-          FileUtils.touch(%W[prefs user].map { |f| File.join(path,"#{f}.js") })
-        end
+        FileUtils.mkdir_p(path) unless File.directory?(path)
+        FileUtils.touch(%W[prefs user].map { |f| File.join(path,"#{f}.js") })
         response = call_ff_create(path)
         if response =~ /Error/
           raise ProfileInitializationError, response

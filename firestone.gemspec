@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{A collection of Firefox automation and programmatic management scripts in Ruby}
 
   s.rubyforge_project = "firestone"
+  s.add_dependency 'progressbar'
   s.add_development_dependency 'rspec'
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {test,spec,features}/*`.split("\n")

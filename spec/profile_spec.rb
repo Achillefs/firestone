@@ -10,7 +10,15 @@ describe Firefox::Profile do
     }
     after { FileUtils.rm_rf @path }
     subject { Firefox::Profile.create(@path) }
+    
     it { subject.should be_a(Firefox::Profile) }
+    it "saves prefs on save" do
+      subject.prefs.merge!({ :test => true })
+      subject.save!
+      
+      n = Firefox::Profile.new(@path)
+      n.prefs.prefs.should eq({ "test" => true })
+    end
   end
   
   subject { Firefox::Profile.new(@path) }

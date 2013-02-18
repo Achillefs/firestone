@@ -67,8 +67,8 @@ module Firefox
         deleted
       end
       
-      def inifile
-        @inifile = IniFile.load(File.join(inifile_path(Base.platform(RUBY_PLATFORM)),'profiles.ini')) if @inifile.nil?
+      def inifile reload = false
+        @inifile = IniFile.load(File.join(inifile_path(Base.platform(RUBY_PLATFORM)),'profiles.ini')) if @inifile.nil? or reload
         @inifile
       end
       

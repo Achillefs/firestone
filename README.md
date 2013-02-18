@@ -36,7 +36,8 @@ or
 
 This currently only works on OSX.
 
-### Create a new Firefox profile with a couple of custom preferences
+### Manage Firefox profiles
+#### Profile Creation:
 
     require 'firefox'
     p = Firefox::Profile.create('./newprofile')
@@ -50,6 +51,15 @@ This currently only works on OSX.
 
 This will create a new firefox profile in `./newprofile`. It will populate the new profile's preferences with the values provided.
 If the given folder does not exist it will create it.
+
+#### Profile Deletion:
+
+    require 'firefox'
+    Firefox::Profile.destroy('./newprofile')
+    # returns true if profile found and deleted, otherwise returns fase
+
+This will delete all profile data and de-register the profile. 
+This is a non-reversible, destructive operation
 
 ## Suggestions, comments, bugs, whatever
 Feel free to use Issues to submit bugs, suggestions or feature requests. 

@@ -1,4 +1,7 @@
 module Firefox
+  # TODO: extension listing using <profile>/extensions.sqlite
+  # TODO: extension installation using zip/zip
+  # TODO: extension removal
   class Addons < Fondue::HashClass
     attr_accessor :path, :addons
     

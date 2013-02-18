@@ -19,7 +19,7 @@ module Firefox
         when :linux
           @bin_path = '/usr/bin/firefox'
         else
-          raise UnsupportedOSError.new("I don't really know what OS you're on, sorry")
+          raise UnsupportedOSError, "I don't really know what OS you're on, sorry"
         end
       end
       

@@ -79,7 +79,7 @@ module Firefox
         when :linux
           File.join('/','home',ENV['USER'],'.mozilla','firefox')
         when :win
-          %{"#{File.join('C:','Documents and Settings',ENV['USER'],'Application Data','Mozilla','Firefox')}"}
+          File.join('C:','Documents and Settings',ENV['USER'],'Application Data','Mozilla','Firefox')
         else
           raise UnsupportedOSError, "I don't really know what OS you're on, sorry"
         end

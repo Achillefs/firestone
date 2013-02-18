@@ -6,7 +6,7 @@ describe Firefox::Profile do
   
   context '#inifile_path' do
     it { subject.inifile_path(:osx).should eq("/Users/#{ENV['USER']}/Library/Application Support/Firefox") }
-    it { subject.inifile_path(:win).should eq(%{"C:/Documents and Settings/#{ENV['USER']}/Application Data/Mozilla/Firefox"}) }
+    it { subject.inifile_path(:win).should eq("C:/Documents and Settings/#{ENV['USER']}/Application Data/Mozilla/Firefox") }
     it { subject.inifile_path(:linux).should eq("/home/#{ENV['USER']}/.mozilla/firefox") }
   end
   
